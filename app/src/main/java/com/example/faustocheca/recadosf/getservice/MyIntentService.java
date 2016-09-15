@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -174,13 +176,17 @@ public class MyIntentService extends IntentService {
                             Date newDateMaxRec = myDateFormat(fecha_hora_max_Rec);
 
 
-                        // Received Data to ArrayList
+                        // Received Data loaded to ArrayList
 
                             recados.add(new Recado(newDateRec,
                                     nombre_cliente_Rec,
                                     telefono_Rec,direccion_recogida_Rec,
                                     direccion_entrega_Rec,descripcion_Rec,
                                     newDateMaxRec));
+
+                            // Sort ArrayList using method
+
+                            ordenarArrayList (recados);
 
 
 
@@ -218,6 +224,25 @@ public class MyIntentService extends IntentService {
 
             }
         });
+
+
+    }
+
+    private void ordenarArrayList(ArrayList<Recado> recados) {
+
+        Collections.sort(recados, new Comparator<Recado>() {
+
+
+            @Override
+            public int compare(Recado recado2, Recado recado1) {
+
+                return recado2.getFecha_hora_Rec()
+                        .compareTo(recado1.getFecha_hora_Rec());
+            }
+        });
+
+
+
 
 
     }
