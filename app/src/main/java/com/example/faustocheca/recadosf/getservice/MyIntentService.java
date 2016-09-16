@@ -169,24 +169,16 @@ public class MyIntentService extends IntentService {
 
 
 
-                        // Call to method myDateFormat
 
-                            Date newDateRec = myDateFormat(fecha_hora_Rec);
-                                Log.i(">>ParseFecha",String.valueOf(newDateRec));
-                            Date newDateMaxRec = myDateFormat(fecha_hora_max_Rec);
 
 
                         // Received Data loaded to ArrayList
 
-                            recados.add(new Recado(newDateRec,
+                            recados.add(new Recado(fecha_hora_Rec,
                                     nombre_cliente_Rec,
                                     telefono_Rec,direccion_recogida_Rec,
                                     direccion_entrega_Rec,descripcion_Rec,
-                                    newDateMaxRec));
-
-                            // Sort ArrayList using method
-
-                            ordenarArrayList (recados);
+                                    fecha_hora_max_Rec));
 
 
 
@@ -207,7 +199,8 @@ public class MyIntentService extends IntentService {
                     e.printStackTrace();
                 }
 
-                // Send Intent
+
+                // Send Intent with parcelable version of ArrayList
 
                 Intent intent1 = new Intent(getApplicationContext(), Main2Activity.class);
                 intent1.putParcelableArrayListExtra("array",recados);
@@ -227,6 +220,8 @@ public class MyIntentService extends IntentService {
 
 
     }
+
+    /*
 
     private void ordenarArrayList(ArrayList<Recado> recados) {
 
@@ -284,6 +279,7 @@ public class MyIntentService extends IntentService {
 
 
     }
+    */
 
 
     /**

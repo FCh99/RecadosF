@@ -10,15 +10,16 @@ import java.util.Date;
  */
 public class Recado implements Parcelable {
 
-    Date fecha_hora_Rec;
+    String fecha_hora_Rec;
     String nombre_cliente_Rec;
     String telefono_Rec;
     String direccion_recogida_Rec;
     String direccion_entrega_Rec;
     String descripcion_Rec;
-    Date fecha_hora_max_Rec;
+    String fecha_hora_max_Rec;
 
-    public Recado(Date fecha_hora_Rec, String nombre_cliente_Rec, String telefono_Rec, String direccion_recogida_Rec, String direccion_entrega_Rec, String descripcion_Rec, Date fecha_hora_max_Rec) {
+
+    public Recado(String fecha_hora_Rec, String nombre_cliente_Rec, String telefono_Rec, String direccion_recogida_Rec, String direccion_entrega_Rec, String descripcion_Rec, String fecha_hora_max_Rec) {
         this.fecha_hora_Rec = fecha_hora_Rec;
         this.nombre_cliente_Rec = nombre_cliente_Rec;
         this.telefono_Rec = telefono_Rec;
@@ -30,11 +31,13 @@ public class Recado implements Parcelable {
 
 
     protected Recado(Parcel in) {
+        fecha_hora_Rec = in.readString();
         nombre_cliente_Rec = in.readString();
         telefono_Rec = in.readString();
         direccion_recogida_Rec = in.readString();
         direccion_entrega_Rec = in.readString();
         descripcion_Rec = in.readString();
+        fecha_hora_max_Rec = in.readString();
     }
 
     public static final Creator<Recado> CREATOR = new Creator<Recado>() {
@@ -56,14 +59,16 @@ public class Recado implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(fecha_hora_Rec);
         parcel.writeString(nombre_cliente_Rec);
         parcel.writeString(telefono_Rec);
         parcel.writeString(direccion_recogida_Rec);
         parcel.writeString(direccion_entrega_Rec);
         parcel.writeString(descripcion_Rec);
+        parcel.writeString(fecha_hora_max_Rec);
     }
 
-    public Date getFecha_hora_Rec() {
+    public String getFecha_hora_Rec() {
         return fecha_hora_Rec;
     }
 
@@ -87,7 +92,7 @@ public class Recado implements Parcelable {
         return descripcion_Rec;
     }
 
-    public Date getFecha_hora_max_Rec() {
+    public String getFecha_hora_max_Rec() {
         return fecha_hora_max_Rec;
     }
 
@@ -98,13 +103,13 @@ public class Recado implements Parcelable {
     @Override
     public String toString() {
         return "Recado{" +
-                "fecha_hora_Rec=" + fecha_hora_Rec +
+                "fecha_hora_Rec='" + fecha_hora_Rec + '\'' +
                 ", nombre_cliente_Rec='" + nombre_cliente_Rec + '\'' +
                 ", telefono_Rec='" + telefono_Rec + '\'' +
                 ", direccion_recogida_Rec='" + direccion_recogida_Rec + '\'' +
                 ", direccion_entrega_Rec='" + direccion_entrega_Rec + '\'' +
                 ", descripcion_Rec='" + descripcion_Rec + '\'' +
-                ", fecha_hora_max_Rec=" + fecha_hora_max_Rec +
+                ", fecha_hora_max_Rec='" + fecha_hora_max_Rec + '\'' +
                 '}';
     }
 }
